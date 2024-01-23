@@ -1,0 +1,14 @@
+# my-symfony-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "my-symfony-app.fullname" . }}
+  labels:
+    app: {{ include "my-symfony-app.name" . }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+  selector:
+    app: {{ include "my-symfony-app.name" . }}
